@@ -10,10 +10,20 @@ import SwiftUI
 
 @main
 struct iTourApp: App {
+    
+    let container: ModelContainer = {
+        let schema = Schema([Expense.self, Destination.self])
+        let container = try! ModelContainer(for: schema, configurations: [])
+        return container
+    }()
+    
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
+            ContentViewSecond()
         }
-        .modelContainer(for: Destination.self)
+//        .modelContainer(for: [Destination.self, Expense.self])
+        .modelContainer(container)
     }
 }
